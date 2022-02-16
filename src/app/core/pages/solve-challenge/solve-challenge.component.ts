@@ -28,5 +28,10 @@ export class SolveChallengeComponent implements OnInit {
     });
     
   }
+  onOptionsSelected(event: any) {
+    this.taskDescription = this.tasks.find(
+      (x) => x.id == event.value
+    )?.description!;
+  }
 
 }
