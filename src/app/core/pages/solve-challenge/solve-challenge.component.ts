@@ -16,7 +16,7 @@ export class SolveChallengeComponent implements OnInit {
   errorMessage: any;
   taskDescription: string = '';
   submissionResult: SubmissionOutcome;
-  submitLoading:boolean;
+  submitLoading:boolean=false;
 
   constructor(private appService: AppService) {}
 
@@ -80,6 +80,9 @@ export class SolveChallengeComponent implements OnInit {
     setTimeout(() => (this.errorMessage = null), 5000);
   }
   submitChallenge() {
+    if(this.form.invalid){
+      return
+    }
     this.submitLoading = true
     this.errorMessage = undefined;
     let payload: CompileUiPayload = new CompileUiPayload();

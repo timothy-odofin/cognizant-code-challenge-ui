@@ -61,9 +61,9 @@
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
-                                <button  type="submit" [disabled]="form.invalid && submitLoading" class="btn btn-secondary buttonload"
+                                <button  type="submit" [disabled]="form.invalid && submitLoading" class="btn btn-secondary "
                                     >
-                                    <span *ngIf="submitLoading"class="spinner-border"></span>
+                                    <span *ngIf="form.invalid && submitLoading"class="spinner-border"></span>
                                     <span> Submit Solution</span>
                                 
                                 </button>
