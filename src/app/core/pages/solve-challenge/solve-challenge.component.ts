@@ -27,7 +27,7 @@ export class SolveChallengeComponent implements OnInit {
       language: new FormControl('', [Validators.required]),
       source: new FormControl('', [Validators.required]),
     });
-    
+    this.initializeData()
   }
   initializeData() {
     this.appService.fetchTasks(AppConstant.PAGE, AppConstant.SIZE).subscribe(
