@@ -1,1 +1,91 @@
-<p>solve-challenge works!</p>
+<div class="section">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="container">
+                <div class="body">
+                    <form [formGroup]="form" (ngSubmit)="submitChallenge()">
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">NAME</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="name">
+                                <span style="color: red; font-size: 14px;"
+                                    *ngIf="name && name.invalid && name.touched">This input filed is not valid</span>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">SELECT TASK</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" aria-label="--Select--"
+                                 formControlName="task" (change)="onOptionsSelected($event.target)">
+                                    <option *ngFor="let task of tasks" [value]="task?.id">
+                                        {{task?.name}}
+                                    </option>
+                                </select>
+                                <span style="color: red; font-size: 14px;"
+                                    *ngIf="task && task.invalid && task.touched">This input filed is not valid</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 row">
+                            <label for="description" class="col-sm-3 col-form-label">DESCRIPTION</label>
+                            <div class="col-sm-9">
+                                <p><code>{{taskDescription}}</code></p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">LANGUAGE</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" aria-label="Default select example"
+                                    formControlName="language">
+                                    <option *ngFor="let language of languages" [value]="language.name">
+                                        {{language?.name}}
+                                    </option>
+                                </select>
+                                <span style="color: red; font-size: 14px;"
+                                    *ngIf="language && language.invalid && language.touched">This input filed is not
+                                    valid</span>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-3 col-form-label">SOLUTION CODE</label>
+                            <div class="col-sm-9">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        style="height: 100px" formControlName="source"></textarea>
+                                    <span style="color: red; font-size: 14px;"
+                                        *ngIf="source && source.invalid && source.touched">This input filed is not
+                                        valid</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="name" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <button  type="submit" [disabled]="form.invalid && submitLoading" class="btn btn-secondary buttonload"
+                                    >
+                                    <span *ngIf="submitLoading"class="spinner-border"></span>
+                                    <span> Submit Solution</span>
+                                
+                                </button>
+                                    
+                                    
+                            </div>
+                        </div>
+                       
+                        <div class="mt-2 row text-center" *ngIf="errorMessage !=null">
+                            <label for="name" class="col-sm-3 col-form-label"></label>
+                            <div class="alert alert-danger alert-dismissible col-sm-9" >
+                                <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Fail!</strong> {{errorMessage}}
+                              </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 body_1">
+            <!-- <app-score-page></app-score-page> -->
+        </div>
+    </div>
+</div>
