@@ -1,1 +1,31 @@
-<p>list-challenge-outcome works!</p>
+<div class="container">
+
+    <div *ngIf="loading && errorMessage" class="ëmpty_table">
+
+        <img src="assets/img/notfound.png" height="80px" width= "256px" />
+      
+      
+      </div>
+
+    <table class="table mt-5" *ngIf="loading">
+        <thead class="tab">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Success Solutions</th>
+                <th scope="col">Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let result of dataList">
+                <td>{{result?.username}}</td>
+                <td>
+    {{result?.successCount}}
+                </td>
+                <td>
+    {{result?.tasks}}
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
