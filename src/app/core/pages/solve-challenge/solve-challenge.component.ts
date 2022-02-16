@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TasksResponse, Language, SubmissionOutcome } from '../../model/app-model';
+import { TasksResponse, Language, SubmissionOutcome, CompileUiPayload } from '../../model/app-model';
 import { AppService } from '../../services/app.service';
 import { AppConstant } from '../../utils/app-constants';
 
@@ -78,5 +78,25 @@ export class SolveChallengeComponent implements OnInit {
   }
   closeMessage() {
     setTimeout(() => (this.errorMessage = null), 5000);
+  }
+  submitChallenge() {
+    this.submitLoading = true
+    this.errorMessage = undefined;
+    let payload: CompileUiPayload = new CompileUiPayload();
+    payload.language = this.language?.value;
+    payload.script = this.source?.value;
+    payload.taskId = this.task?.value;
+    payload.username = this.name?.value;
+    this.appService.sendCodeChallenge(payload).subscribe((result: any) => {
+      if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
+        this.submissionResult = result[AppConstant.DATA];
+        this.submitLoading = false
+      } else {
+        this.submitLoading = false
+        this.errorMessage = result[AppConstant.DATA];
+        this.closeMessage();
+      }
+    });
+    this.form.reset()
   }
 }
