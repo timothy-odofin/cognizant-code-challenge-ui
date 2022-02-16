@@ -36,4 +36,4 @@ export class ListChallengeOutcomeComponent implements OnInit {
   }
 }
 
-}
+
