@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TasksResponse, Language, SubmissionOutcome } from '../../model/app-model';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-solve-challenge',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./solve-challenge.component.scss']
 })
 export class SolveChallengeComponent implements OnInit {
+  form: FormGroup = new FormGroup({});
+  tasks: TasksResponse[] = [];
+  languages: Language[] = [];
+  errorMessage: any;
+  taskDescription: string = '';
+  submissionResult: SubmissionOutcome;
+  submitLoading:boolean;
 
-  constructor() { }
+  constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      task: new FormControl('', [Validators.required]),
+      language: new FormControl('', [Validators.required]),
+      source: new FormControl('', [Validators.required]),
+    });
+    
   }
 
 }
