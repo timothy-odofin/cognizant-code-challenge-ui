@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TasksResponse, Language, SubmissionOutcome } from '../../model/app-model';
 import { AppService } from '../../services/app.service';
+import { AppConstant } from '../../utils/app-constants';
 
 @Component({
   selector: 'app-solve-challenge',
@@ -27,6 +28,32 @@ export class SolveChallengeComponent implements OnInit {
       source: new FormControl('', [Validators.required]),
     });
     
+  }
+  initializeData() {
+    this.appService.fetchTasks(AppConstant.PAGE, AppConstant.SIZE).subscribe(
+      (result: any) => {
+        if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
+          this.tasks = result[AppConstant.DATA];
+        } else {
+          this.errorMessage = result[AppConstant.DATA];
+        }
+      },
+      (error) => {
+        this.appService.toastService.error(error, AppConstant.FAILED);
+      }
+    );
+    this.appService.fetchSupportedLanguages().subscribe(
+      (result: any) => {
+        if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
+          this.languages = result[AppConstant.DATA];
+        } else {
+          this.errorMessage = result[AppConstant.DATA];
+        }
+      },
+      (error) => {
+        this.appService.toastService.error(error, AppConstant.FAILED);
+      }
+    );
   }
   onOptionsSelected(event: any) {
     this.taskDescription = this.tasks.find(
