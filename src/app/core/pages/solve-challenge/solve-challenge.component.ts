@@ -76,4 +76,7 @@ export class SolveChallengeComponent implements OnInit {
   get language() {
     return this.form.get('language');
   }
+  closeMessage() {
+    setTimeout(() => (this.errorMessage = null), 5000);
+  }
 }
