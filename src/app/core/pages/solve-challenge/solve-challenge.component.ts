@@ -34,4 +34,19 @@ export class SolveChallengeComponent implements OnInit {
     )?.description!;
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
+  get task() {
+    return this.form.get('task');
+  }
+
+  get source() {
+    return this.form.get('source');
+  }
+
+  get language() {
+    return this.form.get('language');
+  }
 }
