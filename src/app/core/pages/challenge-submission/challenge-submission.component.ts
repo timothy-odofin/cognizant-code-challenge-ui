@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { SubmissionOutcome } from '../../model/app-model';
 
 @Component({
@@ -8,9 +8,13 @@ import { SubmissionOutcome } from '../../model/app-model';
 })
 export class ChallengeSubmissionComponent implements OnInit {
 @Input()result:SubmissionOutcome
+@Output() close= new EventEmitter<boolean>()
   constructor() { }
 
   ngOnInit(): void {
+  }
+  closeDisplay(){
+    this.close.emit(false)
   }
 
 }

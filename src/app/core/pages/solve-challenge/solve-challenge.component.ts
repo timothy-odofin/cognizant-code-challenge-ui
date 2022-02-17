@@ -77,7 +77,14 @@ export class SolveChallengeComponent implements OnInit {
     return this.form.get('language');
   }
   closeMessage() {
-    setTimeout(() => (this.errorMessage = null), 5000);
+    setTimeout(() => {
+      this.errorMessage = null
+      this.taskDescription=""
+    }, 5000);
+  }
+  solveAnotherChallenge(event:boolean){
+this.submissionResult=null!
+this.taskDescription=""
   }
   submitChallenge() {
     if(this.form.invalid){

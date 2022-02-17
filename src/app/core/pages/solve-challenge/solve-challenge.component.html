@@ -1,8 +1,19 @@
 <div class="section">
     <div class="row">
+        <app-challenge-submission [result]="submissionResult" (close)="solveAnotherChallenge($event)"></app-challenge-submission>
+    </div>
+    <div class="row" *ngIf="submissionResult==null || submissionResult==undefined">
         <div class="col-sm-6">
             <div class="container">
                 <div class="body">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-9">
+                          
+                            <span 
+                              ><b>Welcome</b>, this is a code challenge platform, you can use any code editor of your choice, then copy and paste the solution into the given "Solution Code" text area. You can as well type directly into the area, then click on Submit solution.</span>
+                        </div>
+                    </div>
                     <form [formGroup]="form" (ngSubmit)="submitChallenge()">
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">NAME</label>
