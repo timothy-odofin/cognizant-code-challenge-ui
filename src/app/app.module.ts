@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListChallengeOutcomeComponent } from './core/pages/list-challenge-outcome/list-challenge-outcome.component';
 import { SolveChallengeComponent } from './core/pages/solve-challenge/solve-challenge.component';
-import { ChallengeSubmissionComponent } from './core/pages/challenge-submission/challenge-submission.component';
+import { ChallengeSubmissionComponent } from './core/components/challenge-submission/challenge-submission.component';
 
 
 @NgModule({
