@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TasksResponse, Language, SubmissionOutcome, CompileUiPayload } from '../../model/app-model';
-import { AppService } from '../../services/app.service';
-import { AppConstant } from '../../utils/app-constants';
+import { TasksResponse, Language, SubmissionOutcome, CompileUiPayload } from 'src/app/core/model/app-model';
+import { AppService } from 'src/app/core/services/app.service';
+import { AppConstant } from 'src/app/core/utils/app-constants';
+
 
 @Component({
   selector: 'app-solve-challenge',

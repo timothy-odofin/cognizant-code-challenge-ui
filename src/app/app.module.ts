@@ -6,17 +6,19 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ListChallengeOutcomeComponent } from './core/pages/list-challenge-outcome/list-challenge-outcome.component';
-import { SolveChallengeComponent } from './core/pages/solve-challenge/solve-challenge.component';
+import { ListChallengeOutcomeComponent } from './core/pages/home/list-challenge-outcome/list-challenge-outcome.component';
 import { ChallengeSubmissionComponent } from './core/components/challenge-submission/challenge-submission.component';
 import { LoginComponent } from './core/pages/auth/login/login.component';
 import { SignupComponent } from './core/pages/auth/signup/signup.component';
+import { HomeComponent } from './core/pages/home/home.component';
+import { SolveChallengeComponent } from './core/pages/home/solve-challenge/solve-challenge.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListChallengeOutcomeComponent,
+    HomeComponent,
     SolveChallengeComponent,
     ChallengeSubmissionComponent,
     LoginComponent,

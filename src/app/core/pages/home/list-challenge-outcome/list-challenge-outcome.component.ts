@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskReportResponse } from '../../model/app-model';
-import { AppService } from '../../services/app.service';
-import { AppConstant } from '../../utils/app-constants';
+import { TaskReportResponse } from '../../../model/app-model';
+import { AppService } from '../../../services/app.service';
+import { AppConstant } from '../../../utils/app-constants';
 
 @Component({
   selector: 'app-list-challenge-outcome',
