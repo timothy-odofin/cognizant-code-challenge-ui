@@ -22,7 +22,12 @@ export class AppService {
   loginStatus(): Observable<boolean> {
     return this.isLoggedin.asObservable();
   }
-
+  getToken():string{
+return localStorage.getItem(AppConstant.USER_TOKEN)!
+  }
+saveUserToStore(key:string,payload:any){
+  localStorage.setItem(key,JSON.stringify(payload))
+}
   checkLoginStatus() {
     let login:any =  JSON.parse(localStorage.getItem(AppConstant.LOGIN_USER)!)
     

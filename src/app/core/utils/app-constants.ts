@@ -6,5 +6,6 @@ export class AppConstant{
     public static MESSAGE='message';
     public static DATA='data';
 public static LOGIN_USER="user"
+public static USER_TOKEN="token"
 
 }
