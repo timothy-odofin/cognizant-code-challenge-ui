@@ -6,11 +6,18 @@
                     <h1 style="cursor: pointer;">Login</h1>
                     <hr>
                 </div>
-                <form [formGroup]="loginForm">
+                <div class="mt-2 row text-center" *ngIf="errorMessage !=null">
+                    <label for="name" class="col-sm-3 col-form-label"></label>
+                    <div class="alert alert-danger alert-dismissible col-sm-9" >
+                        <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Fail!</strong> {{errorMessage}}
+                      </div>
+                </div>
+                <form [formGroup]="loginForm"  (ngSubmit)="login()">
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="text" formControlName="email" class="form-control" placeholder="Enter your email:" />
-                        <span style="color: red; font-size: 14px;" *ngIf="email && email.invalid && email.touched">This
+                        <label class="form-label">Username</label>
+                        <input type="text" formControlName="username" class="form-control" placeholder="Enter your username:" />
+                        <span style="color: red; font-size: 14px;" *ngIf="username && username.invalid && username.touched">This
                             input filed is not valid</span>
                     </div>
                     <div class="mb-3">
@@ -20,9 +27,12 @@
                             not valid</span>
                     </div>
                     <div>
-                        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">SignUp</button>
-                        <span class="login"><a class="mt-2" routerLink="/signup" style="color: #999">New User ?
-                                Click to Signup</a></span>
+                        <button type="submit" [disabled]="loginForm.invalid && submitLoading" class="btn btn-secondary">
+                            <span *ngIf="loginForm.invalid && submitLoading"class="spinner-border"></span>
+                        <span>Login</span>    
+                        </button>
+                        <span class="login"><a class="mt-2" routerLink="/signup" style="color: #999">No account yet?
+                              </a></span>
 
                     </div>
                 </form>
