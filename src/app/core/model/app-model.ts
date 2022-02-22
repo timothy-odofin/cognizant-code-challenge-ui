@@ -23,3 +23,12 @@ export class CompileUiPayload{
     language:string
     taskId:number
 }
+export class Login{
+    username:string
+    password:string
+}
+export class Signup{
+    username:string 
+    password:string 
+    fullname:string
+}
