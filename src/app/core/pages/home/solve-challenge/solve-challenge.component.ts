@@ -99,7 +99,7 @@ this.taskDescription=""
     payload.language = this.language?.value;
     payload.script = this.source?.value;
     payload.taskId = this.task?.value;
-    payload.username = this.name?.value;
+    payload.username =this.userName
     this.appService.sendCodeChallenge(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submissionResult = result[AppConstant.DATA];
