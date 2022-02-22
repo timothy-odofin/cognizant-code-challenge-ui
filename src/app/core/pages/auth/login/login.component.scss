@@ -1,0 +1,21 @@
+.card {
+    // border: none;
+    width: 500px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    display: inline;
+    vertical-align: middle;
+}
+
+.login {
+    display: inline;
+    vertical-align: middle;
+    font-size: 13px;
+    margin-left: 15px;
+}
