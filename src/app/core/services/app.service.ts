@@ -21,7 +21,7 @@ export class AppService {
   constructor(
     private http: HttpClient,
     public toastService: ToastrService,
-    private router: Router
+    public router: Router
   ) {
     this.checkLoginStatus();
   }

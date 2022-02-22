@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
     this.appService.login(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submitLoading = false
+        this.appService.setLoginStatus(true)
+        this.appService.saveUserToStore(AppConstant.LOGIN_USER, result['data'])
+        this.appService.router.navigate(['home'])
       } else {
         this.submitLoading = false
         this.errorMessage = result[AppConstant.DATA];
