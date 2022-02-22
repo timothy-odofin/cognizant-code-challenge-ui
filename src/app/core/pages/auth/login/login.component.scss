@@ -1,24 +1,23 @@
 .card {
-    // border: none;
-    width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  width: 500px;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
 }
 
 .btn {
-    display: inline;
-    vertical-align: middle;
+  display: inline;
+  vertical-align: middle;
 }
 
 .login {
-    display: inline;
-    vertical-align: middle;
-    font-size: 13px;
-    margin-left: 15px;
+  display: inline;
+  vertical-align: middle;
+  font-size: 13px;
+  margin-left: 15px;
 }
-.error{
-    color: red; font-size: 14px;
+.error {
+  color: red;
+  font-size: 14px;
 }
