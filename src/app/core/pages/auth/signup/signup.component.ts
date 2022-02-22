@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
     let payload: Signup = new Signup();
     payload.username = this.userName?.value;
     payload.password = this.password?.value;
-    payload.fullname = this.name?.value;
+    payload.name = this.name?.value;
     this.appService.signup(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submitLoading = false

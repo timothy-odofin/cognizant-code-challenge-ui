@@ -30,5 +30,5 @@ export class Login{
 export class Signup{
     username:string 
     password:string 
-    fullname:string
+    name:string
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top:250px">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -29,14 +29,14 @@
 
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="text" formControlName="password" class="form-control" placeholder="Enter your password:" />
+                        <input type="password" formControlName="password" class="form-control" placeholder="Enter your password:" />
                         <span class="error" *ngIf="password && password.invalid && password.touched">This input filed
                             is not valid</span>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Comfirm Password</label>
-                        <input type="text" formControlName="comfirmPassword" class="form-control" placeholder="Comfirm your password:" />
+                        <input type="password" formControlName="comfirmPassword" class="form-control" placeholder="Comfirm your password:" />
                         <span class="error" *ngIf="comfirmPassword && comfirmPassword.invalid && comfirmPassword.touched">This input
                             filed is not valid</span>
                     </div>
