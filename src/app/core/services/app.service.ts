@@ -24,7 +24,7 @@ export class AppService {
   }
 
   checkLoginStatus() {
-    let login:any =  JSON.parse(localStorage.getItem(AppConstant.LOGIN_USER)|| '{}')
+    let login:any =  JSON.parse(localStorage.getItem(AppConstant.LOGIN_USER)!)
     
     if (login !== null) {
       this.loginUser = login
