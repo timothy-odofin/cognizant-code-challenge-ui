@@ -5,6 +5,6 @@ export class AppConstant{
     public static SIZE:number=50
     public static MESSAGE='message';
     public static DATA='data';
-
+public static LOGIN_USER="user"
 
 }
