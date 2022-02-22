@@ -4,7 +4,7 @@ import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CompileUiPayload, Login, Signup } from '../model/app-model';
+import { CompileUiPayload, Login, LoginResponse, Signup } from '../model/app-model';
 import { AppConstant } from '../utils/app-constants';
 
 @Injectable({
@@ -28,8 +28,10 @@ export class AppService {
   loginStatus(): Observable<boolean> {
     return this.isLoggedin.asObservable();
   }
-  getToken(): string {
-    return localStorage.getItem(AppConstant.USER_TOKEN)!;
+  getLoginUser(): LoginResponse {
+    let savedUser:any= localStorage.getItem(AppConstant.USER_TOKEN)!;
+    let savedUserEntity:any=savedUser==null?new LoginResponse():JSON.stringify(savedUser)
+    return Object.assign(LoginResponse,savedUserEntity)
   }
   saveUserToStore(key: string, payload: any) {
     localStorage.setItem(key, JSON.stringify(payload));
