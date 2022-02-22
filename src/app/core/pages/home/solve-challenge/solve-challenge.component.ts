@@ -82,7 +82,7 @@ export class SolveChallengeComponent implements OnInit {
     setTimeout(() => {
       this.errorMessage = null
       this.taskDescription=""
-    }, 5000);
+    }, 8000);
   }
   solveAnotherChallenge(event:boolean){
 this.submissionResult=null!
@@ -109,6 +109,7 @@ this.taskDescription=""
         this.closeMessage();
       }
     });
+    this.taskDescription=""
     this.form.reset()
   }
 }
