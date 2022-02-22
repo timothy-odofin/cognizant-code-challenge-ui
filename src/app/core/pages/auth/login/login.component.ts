@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submitLoading = false
         this.appService.setLoginStatus(true)
-        this.appService.saveUserToStore(AppConstant.LOGIN_USER, result['data'])
+        this.appService.saveToStore(AppConstant.LOGIN_USER, result[AppConstant.DATA])
+        console.log(localStorage.getItem(AppConstant.LOGIN_USER))
         this.appService.router.navigate(['home'])
       } else {
         this.submitLoading = false

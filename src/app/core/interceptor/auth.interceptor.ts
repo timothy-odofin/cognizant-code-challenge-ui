@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private appService: AppService, private router: Router) { }
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(this.appService.getLoginUser()){
+    if(this.appService.getLoginUser().tokenInfo !=null && this.appService.getLoginUser()){
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.appService.getLoginUser().tokenInfo.access_token}`

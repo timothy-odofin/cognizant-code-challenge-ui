@@ -28,14 +28,29 @@ export class AppService {
   loginStatus(): Observable<boolean> {
     return this.isLoggedin.asObservable();
   }
-  getLoginUser(): LoginResponse {
-    let savedUser:any= localStorage.getItem(AppConstant.USER_TOKEN)!;
-    let savedUserEntity:any=savedUser==null?new LoginResponse():JSON.stringify(savedUser)
-    return Object.assign(LoginResponse,savedUserEntity)
+
+  public saveToStore(key:string, data:any){
+    let encrypt =JSON.stringify(data); // this should be encript
+    localStorage.setItem(key, encrypt);
+   
   }
-  saveUserToStore(key: string, payload: any) {
-    localStorage.setItem(key, JSON.stringify(payload));
+
+  public removeFromStore(key:string){
+    localStorage.removeItem(key)
   }
+
+  public getFromStore(key:string){
+    let store = localStorage.getItem(key);
+    if(store){
+      // let decrypt = this.aes.decrypt(store)
+      return JSON.parse(store)
+    }
+  }
+  getLoginUser(){
+    this.loginUser=this.getFromStore(AppConstant.LOGIN_USER)
+    return this.loginUser;
+  }
+  
   checkLoginStatus() {
     let login: any = JSON.parse(localStorage.getItem(AppConstant.LOGIN_USER)!);
 
