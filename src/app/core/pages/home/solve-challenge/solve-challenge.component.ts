@@ -18,10 +18,12 @@ export class SolveChallengeComponent implements OnInit {
   taskDescription: string = '';
   submissionResult: SubmissionOutcome;
   submitLoading:boolean=false;
+  userName:any
 
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    this.userName=this.appService.getLoginUser()['username']
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       task: new FormControl('', [Validators.required]),

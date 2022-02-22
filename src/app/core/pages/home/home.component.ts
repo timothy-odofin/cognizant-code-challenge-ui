@@ -7,10 +7,10 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   constructor(private appService:AppService) { }
 
   ngOnInit(): void {
+  
   }
 logout(){
   this.appService.Logout()

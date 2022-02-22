@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.appService.setLoginStatus(true)
         this.appService.saveToStore(AppConstant.LOGIN_USER, result[AppConstant.DATA])
         console.log(localStorage.getItem(AppConstant.LOGIN_USER))
-        this.appService.router.navigate(['home'])
+        this.appService.router.navigate(['home/challenge'])
       } else {
         this.submitLoading = false
         this.errorMessage = result[AppConstant.DATA];
