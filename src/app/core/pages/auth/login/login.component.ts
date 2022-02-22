@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     payload.password = this.password?.value;
     this.appService.login(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
-       
         this.submitLoading = false
       } else {
         this.submitLoading = false
