@@ -39,6 +39,7 @@
                         <input type="password" formControlName="comfirmPassword" class="form-control" placeholder="Comfirm your password:" />
                         <span class="error" *ngIf="comfirmPassword && comfirmPassword.invalid && comfirmPassword.touched">This input
                             filed is not valid</span>
+                            <div *ngIf="f.confirmPassword.errors?.mustMatch">Password and confirm not match</div>
                     </div>
                     <div>
                         <button type="submit" [disabled]="signupForm.invalid && submitLoading" class="btn btn-secondary">

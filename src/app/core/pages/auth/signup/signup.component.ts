@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Signup } from 'src/app/core/model/app-model';
 import { AppService } from 'src/app/core/services/app.service';
 import { AppConstant } from 'src/app/core/utils/app-constants';
+import { CustomValidators } from 'src/app/core/validators/customer-validators';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
       userName: new FormControl ('', [Validators.required]),
       password: new FormControl ('', [Validators.required]),
       comfirmPassword: new FormControl ('', [Validators.required]),
-    })
+    }),
+    CustomValidators.mustMatch('password', 'confirmPassword')
   }
   closeMessage() {
     setTimeout(() => {
@@ -58,7 +60,9 @@ export class SignupComponent implements OnInit {
     });
     this.signupForm.reset()
   }
-
+  get f() {
+    return this.signupForm.controls;
+  }
    get name() {
     return this.signupForm.get('name');
   }
