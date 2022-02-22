@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
   closeMessage() {
     setTimeout(() => {
       this.errorMessage = null
-    }, 5000);
+    }, 8000);
   }
   navigateToLogin() {
     setTimeout(() => {
