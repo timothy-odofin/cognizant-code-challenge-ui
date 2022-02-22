@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
     setTimeout(() => {
       this.errorMessage = null
       this.route.navigateByUrl("/")
-    }, 5000);
+    }, 1000);
   }
   signup() {
     if(this.signupForm.invalid){
@@ -50,7 +50,6 @@ export class SignupComponent implements OnInit {
     this.appService.signup(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submitLoading = false
-        this.appService.toastService.success(result[AppConstant.DATA],result[AppConstant.MESSAGE])
         this.navigateToLogin()
       } else {
         this.submitLoading = false

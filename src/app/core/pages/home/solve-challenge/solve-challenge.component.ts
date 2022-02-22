@@ -25,7 +25,6 @@ export class SolveChallengeComponent implements OnInit {
   ngOnInit(): void {
     this.userName=this.appService.getLoginUser()['username']
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
       task: new FormControl('', [Validators.required]),
       language: new FormControl('', [Validators.required]),
       source: new FormControl('', [Validators.required]),
