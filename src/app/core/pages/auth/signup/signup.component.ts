@@ -32,10 +32,8 @@ export class SignupComponent implements OnInit {
     }, 8000);
   }
   navigateToLogin() {
-    setTimeout(() => {
       this.errorMessage = null;
       this.route.navigateByUrl('/');
-    }, 1000);
   }
   signup() {
     if (this.signupForm.invalid) {
@@ -57,7 +55,7 @@ export class SignupComponent implements OnInit {
         this.closeMessage();
       }
     });
-    this.signupForm.reset();
+   // this.signupForm.reset();
   }
   get f() {
     return this.signupForm.controls;

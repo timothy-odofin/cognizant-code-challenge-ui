@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           AppConstant.LOGIN_USER,
           result[AppConstant.DATA]
         );
-        console.log(localStorage.getItem(AppConstant.LOGIN_USER));
+       
         this.appService.router.navigate(['home/challenge']);
       } else {
         this.submitLoading = false;
@@ -58,6 +58,6 @@ export class LoginComponent implements OnInit {
         this.closeMessage();
       }
     });
-    this.loginForm.reset();
+   // this.loginForm.reset();
   }
 }
