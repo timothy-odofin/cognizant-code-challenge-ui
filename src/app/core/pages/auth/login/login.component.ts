@@ -7,55 +7,57 @@ import { AppConstant } from 'src/app/core/utils/app-constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
-  submitLoading:boolean=false;
-  errorMessage:any
-  constructor(private appService:AppService) { }
+  submitLoading: boolean = false;
+  errorMessage: any;
+  constructor(private appService: AppService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl ('', [Validators.required]),
-      password: new FormControl ('', [Validators.required]),
-    })
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
   closeMessage() {
     setTimeout(() => {
-      this.errorMessage = null
+      this.errorMessage = null;
     }, 5000);
   }
- get username() {
+  get username() {
     return this.loginForm.get('username');
   }
 
-   get password() {
+  get password() {
     return this.loginForm.get('password');
   }
   login() {
-    if(this.loginForm.invalid){
-      return
+    if (this.loginForm.invalid) {
+      return;
     }
-    this.submitLoading = true
+    this.submitLoading = true;
     this.errorMessage = undefined;
     let payload: Login = new Login();
     payload.username = this.username?.value;
     payload.password = this.password?.value;
     this.appService.login(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
-        this.submitLoading = false
-        this.appService.setLoginStatus(true)
-        this.appService.saveToStore(AppConstant.LOGIN_USER, result[AppConstant.DATA])
-        console.log(localStorage.getItem(AppConstant.LOGIN_USER))
-        this.appService.router.navigate(['home/challenge'])
+        this.submitLoading = false;
+        this.appService.setLoginStatus(true);
+        this.appService.saveToStore(
+          AppConstant.LOGIN_USER,
+          result[AppConstant.DATA]
+        );
+        console.log(localStorage.getItem(AppConstant.LOGIN_USER));
+        this.appService.router.navigate(['home/challenge']);
       } else {
-        this.submitLoading = false
+        this.submitLoading = false;
         this.errorMessage = result[AppConstant.DATA];
         this.closeMessage();
       }
     });
-    this.loginForm.reset()
+    this.loginForm.reset();
   }
-
 }

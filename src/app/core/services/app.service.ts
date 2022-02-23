@@ -4,7 +4,12 @@ import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CompileUiPayload, Login, LoginResponse, Signup } from '../model/app-model';
+import {
+  CompileUiPayload,
+  Login,
+  LoginResponse,
+  Signup,
+} from '../model/app-model';
 import { AppConstant } from '../utils/app-constants';
 
 @Injectable({
@@ -29,28 +34,27 @@ export class AppService {
     return this.isLoggedin.asObservable();
   }
 
-  public saveToStore(key:string, data:any){
-    let encrypt =JSON.stringify(data); // this should be encript
+  public saveToStore(key: string, data: any) {
+    let encrypt = JSON.stringify(data); // this should be encript
     localStorage.setItem(key, encrypt);
-   
   }
 
-  public removeFromStore(key:string){
-    localStorage.removeItem(key)
+  public removeFromStore(key: string) {
+    localStorage.removeItem(key);
   }
 
-  public getFromStore(key:string){
+  public getFromStore(key: string) {
     let store = localStorage.getItem(key);
-    if(store){
+    if (store) {
       // let decrypt = this.aes.decrypt(store)
-      return JSON.parse(store)
+      return JSON.parse(store);
     }
   }
-  getLoginUser(){
-    this.loginUser=this.getFromStore(AppConstant.LOGIN_USER)
+  getLoginUser() {
+    this.loginUser = this.getFromStore(AppConstant.LOGIN_USER);
     return this.loginUser;
   }
-  
+
   checkLoginStatus() {
     let login: any = JSON.parse(localStorage.getItem(AppConstant.LOGIN_USER)!);
 

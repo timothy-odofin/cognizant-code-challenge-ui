@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TasksResponse, Language, SubmissionOutcome, CompileUiPayload } from 'src/app/core/model/app-model';
+import {
+  TasksResponse,
+  Language,
+  SubmissionOutcome,
+  CompileUiPayload,
+} from 'src/app/core/model/app-model';
 import { AppService } from 'src/app/core/services/app.service';
 import { AppConstant } from 'src/app/core/utils/app-constants';
-
 
 @Component({
   selector: 'app-solve-challenge',
   templateUrl: './solve-challenge.component.html',
-  styleUrls: ['./solve-challenge.component.scss']
+  styleUrls: ['./solve-challenge.component.scss'],
 })
 export class SolveChallengeComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -17,19 +21,19 @@ export class SolveChallengeComponent implements OnInit {
   errorMessage: any;
   taskDescription: string = '';
   submissionResult: SubmissionOutcome;
-  submitLoading:boolean=false;
-  userName:any
+  submitLoading: boolean = false;
+  userName: any;
 
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.userName=this.appService.getLoginUser()['username']
+    this.userName = this.appService.getLoginUser()['username'];
     this.form = new FormGroup({
       task: new FormControl('', [Validators.required]),
       language: new FormControl('', [Validators.required]),
       source: new FormControl('', [Validators.required]),
     });
-    this.initializeData()
+    this.initializeData();
   }
   initializeData() {
     this.appService.fetchTasks(AppConstant.PAGE, AppConstant.SIZE).subscribe(
@@ -80,36 +84,36 @@ export class SolveChallengeComponent implements OnInit {
   }
   closeMessage() {
     setTimeout(() => {
-      this.errorMessage = null
-      this.taskDescription=""
+      this.errorMessage = null;
+      this.taskDescription = '';
     }, 8000);
   }
-  solveAnotherChallenge(event:boolean){
-this.submissionResult=null!
-this.taskDescription=""
+  solveAnotherChallenge(event: boolean) {
+    this.submissionResult = null!;
+    this.taskDescription = '';
   }
   submitChallenge() {
-    if(this.form.invalid){
-      return
+    if (this.form.invalid) {
+      return;
     }
-    this.submitLoading = true
+    this.submitLoading = true;
     this.errorMessage = undefined;
     let payload: CompileUiPayload = new CompileUiPayload();
     payload.language = this.language?.value;
     payload.script = this.source?.value;
     payload.taskId = this.task?.value;
-    payload.username =this.userName
+    payload.username = this.userName;
     this.appService.sendCodeChallenge(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
         this.submissionResult = result[AppConstant.DATA];
-        this.submitLoading = false
+        this.submitLoading = false;
       } else {
-        this.submitLoading = false
+        this.submitLoading = false;
         this.errorMessage = result[AppConstant.DATA];
         this.closeMessage();
       }
     });
-    this.taskDescription=""
-    this.form.reset()
+    this.taskDescription = '';
+    this.form.reset();
   }
 }

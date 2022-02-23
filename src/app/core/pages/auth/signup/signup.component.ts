@@ -9,39 +9,39 @@ import { CustomValidators } from 'src/app/core/validators/customer-validators';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  signupForm: FormGroup= new FormGroup({});
-  submitLoading:boolean=false;
-  errorMessage:any
-  constructor(private appService:AppService, private route:Router) { }
+  signupForm: FormGroup = new FormGroup({});
+  submitLoading: boolean = false;
+  errorMessage: any;
+  constructor(private appService: AppService, private route: Router) {}
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup({
-      name: new FormControl ('', [Validators.required]),
-      userName: new FormControl ('', [Validators.required]),
-      password: new FormControl ('', [Validators.required]),
-      comfirmPassword: new FormControl ('', [Validators.required]),
-    }),
-    CustomValidators.mustMatch('password', 'confirmPassword')
+    (this.signupForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      comfirmPassword: new FormControl('', [Validators.required]),
+    })),
+      CustomValidators.mustMatch('password', 'confirmPassword');
   }
   closeMessage() {
     setTimeout(() => {
-      this.errorMessage = null
+      this.errorMessage = null;
     }, 8000);
   }
   navigateToLogin() {
     setTimeout(() => {
-      this.errorMessage = null
-      this.route.navigateByUrl("/")
+      this.errorMessage = null;
+      this.route.navigateByUrl('/');
     }, 1000);
   }
   signup() {
-    if(this.signupForm.invalid){
-      return
+    if (this.signupForm.invalid) {
+      return;
     }
-    this.submitLoading = true
+    this.submitLoading = true;
     this.errorMessage = undefined;
     let payload: Signup = new Signup();
     payload.username = this.userName?.value;
@@ -49,34 +49,32 @@ export class SignupComponent implements OnInit {
     payload.name = this.name?.value;
     this.appService.signup(payload).subscribe((result: any) => {
       if (result[AppConstant.MESSAGE] == AppConstant.SUCCESS) {
-        this.submitLoading = false
-        this.navigateToLogin()
+        this.submitLoading = false;
+        this.navigateToLogin();
       } else {
-        this.submitLoading = false
+        this.submitLoading = false;
         this.errorMessage = result[AppConstant.DATA];
         this.closeMessage();
       }
     });
-    this.signupForm.reset()
+    this.signupForm.reset();
   }
   get f() {
     return this.signupForm.controls;
   }
-   get name() {
+  get name() {
     return this.signupForm.get('name');
   }
 
-   get userName() {
+  get userName() {
     return this.signupForm.get('userName');
   }
 
-   get password() {
+  get password() {
     return this.signupForm.get('password');
   }
 
   get comfirmPassword() {
     return this.signupForm.get('comfirmPassword');
   }
-
-
 }

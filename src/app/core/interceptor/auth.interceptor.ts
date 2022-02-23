@@ -8,10 +8,11 @@ import {
 import { catchError, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private appService: AppService, private router: Router) { }
+  constructor(private appService: AppService, private toasService:ToastrService, private router: Router) { }
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if(this.appService.getLoginUser() !=null && this.appService.getLoginUser()){
@@ -42,6 +43,6 @@ export class AuthInterceptor implements HttpInterceptor {
   private handleAuthError() {
     localStorage.clear()
     this.router.navigateByUrl('/');
-    this.appService.toastService.warning("Your session has expired, Login to continue", 'Session Timeout')
+    this.toasService.warning("Your session has expired, Login to continue", 'Session Timeout')
   }
 }
